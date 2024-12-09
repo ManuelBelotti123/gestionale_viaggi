@@ -17,8 +17,8 @@ try {
     // Recupero delle località più rappresentate negli itinerari
     $location_stmt = $conn->query("
         SELECT L.name, L.region, COUNT(I.itinerary_id) AS itinerary_count
-        FROM GSV_locations L
-        JOIN GSV_itineraries I ON I.location_id = L.location_id
+        FROM gsv_locations L
+        JOIN gsv_itineraries I ON I.location_id = L.location_id
         GROUP BY L.name, L.region
         ORDER BY itinerary_count DESC
         LIMIT 6

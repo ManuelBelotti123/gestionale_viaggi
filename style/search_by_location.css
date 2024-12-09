@@ -1,0 +1,32 @@
+/* Hero Section */
+.bg-dark {
+    background: url('./assets/search-bg.jpg') center/cover no-repeat;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Form Styling */
+form .form-control {
+    border-radius: 0.5rem;
+}
+
+form button {
+    border-radius: 0.5rem;
+    background-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Card Hover Effect */
+.card:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Text Styling */
+h2 {
+    color: #333;
+}

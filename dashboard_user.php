@@ -74,7 +74,7 @@ try {
                     <div class="card-body text-center">
                         <h5 class="card-title">Itinerari per Località</h5>
                         <p class="card-text">Trova tutti gli itinerari relativi a una specifica città o località.</p>
-                        <a href="locations.php" class="btn btn-primary">Vai</a>
+                        <a href="./user_pages/search_by_locations.php" class="btn btn-primary">Vai</a>
                     </div>
                 </div>
             </div>
