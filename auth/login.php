@@ -1,13 +1,13 @@
 <?php
-include('../includes/db.php');
-include('../includes/auth_helper.php');
+include('../db/db.php');
+include('auth_functions.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     try {
-        $stmt = $conn->prepare("SELECT user_id, password, user_type FROM GSV_users WHERE email = :email");
+        $stmt = $conn->prepare("SELECT user_id, password, user_type FROM gsv_users WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 

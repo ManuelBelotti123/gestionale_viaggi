@@ -1,5 +1,5 @@
 <?php
-include('../includes/db.php');
+include('../db/db.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_type = $_POST['user_type']; // "base" o "ente"
 
     try {
-        $stmt = $conn->prepare("INSERT INTO GSV_users (username, name, surname, email, password, user_type, created_at) 
+        $stmt = $conn->prepare("INSERT INTO gsv_users (username, name, surname, email, password, user_type, created_at) 
                                 VALUES (:username, :name, :surname, :email, :password, :user_type, NOW())");
 
         $stmt->bindParam(':username', $username);
