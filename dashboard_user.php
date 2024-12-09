@@ -63,7 +63,7 @@ try {
                     <div class="card-body text-center">
                         <h5 class="card-title">Esplora Itinerari</h5>
                         <p class="card-text">Sfoglia tutti gli itinerari disponibili e scopri nuove destinazioni.</p>
-                        <a href="itineraries.php" class="btn btn-primary">Vai</a>
+                        <a href="./user_pages/itineraries.php" class="btn btn-primary">Vai</a>
                     </div>
                 </div>
             </div>
