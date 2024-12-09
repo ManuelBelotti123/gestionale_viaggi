@@ -85,7 +85,7 @@ try {
                     <div class="card-body text-center">
                         <h5 class="card-title">Tappe Specifiche</h5>
                         <p class="card-text">Esplora tutti gli itinerari che includono una tappa particolare.</p>
-                        <a href="stages.php" class="btn btn-primary">Vai</a>
+                        <a href="./user_pages/search_by_stages.php" class="btn btn-primary">Vai</a>
                     </div>
                 </div>
             </div>
