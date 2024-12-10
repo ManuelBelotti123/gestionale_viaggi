@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_type'] = $user['user_type'];
-            header('Location: ../dashboard_user.php');
+            header('Location: ../dashboard_choose.php');
             exit;
         } else {
             $error_message = "Credenziali non valide.";

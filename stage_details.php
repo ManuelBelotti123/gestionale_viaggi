@@ -60,7 +60,7 @@ try {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../dashboard_user.php">Dashboard</a>
+                        <a class="nav-link active" href="../dashboard_choose.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="auth/logout.php">Logout</a>
