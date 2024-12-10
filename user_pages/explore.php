@@ -92,7 +92,7 @@ try {
                                 <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
                                 <p class="card-text"><?= htmlspecialchars($itinerary['description']) ?></p>
                                 <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
-                                <a href="itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
+                                <a href="../itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
                             </div>
                         </div>
                     </div>
