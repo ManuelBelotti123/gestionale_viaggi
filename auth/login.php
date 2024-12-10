@@ -1,32 +1,26 @@
 <?php
 include('../db/db.php');
-include('auth_functions.php');
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     try {
-        $stmt = $conn->prepare("SELECT user_id, password, user_type FROM gsv_users WHERE email = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+        $stmt = $conn->prepare("SELECT * FROM gsv_users WHERE email = :email");
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $user = $stmt->fetch();
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_type'] = $user['user_type'];
-
-            if ($user['user_type'] == 'base') {
-                header("Location: ../dashboard_user.php");
-            } else {
-                header("Location: ../dashboard_company.php");
-            }
-            exit();
+            header('Location: ../dashboard_user.php');
+            exit;
         } else {
-            $error = "Credenziali errate!";
+            $error_message = "Credenziali non valide.";
         }
     } catch (PDOException $e) {
-        $error = "Errore nel login: " . $e->getMessage();
+        $error_message = "Errore durante il login: " . $e->getMessage();
     }
 }
 ?>

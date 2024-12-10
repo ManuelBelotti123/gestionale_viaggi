@@ -57,35 +57,24 @@ try {
         <h2 class="text-center mb-4">Cosa puoi fare?</h2>
         <div class="row g-4">
             <!-- Esplora tutti gli itinerari -->
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card">
                     <img src="./img/explore.jpg" class="card-img-top" alt="Esplora Itinerari">
                     <div class="card-body text-center">
                         <h5 class="card-title">Esplora Itinerari</h5>
                         <p class="card-text">Sfoglia tutti gli itinerari disponibili e scopri nuove destinazioni.</p>
-                        <a href="./user_pages/itineraries.php" class="btn btn-primary">Vai</a>
+                        <a href="./user_pages/explore.php" class="btn btn-primary">Vai</a>
                     </div>
                 </div>
             </div>
             <!-- Itinerari di una località -->
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card">
                     <img src="./img/location.jpg" class="card-img-top" alt="Itinerari Località">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Itinerari per Località</h5>
-                        <p class="card-text">Trova tutti gli itinerari relativi a una specifica città o località.</p>
-                        <a href="./user_pages/search_by_locations.php" class="btn btn-primary">Vai</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Itinerari con una specifica tappa -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="./img/stages.jpg" class="card-img-top" alt="Tappe Itinerari">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Tappe Specifiche</h5>
-                        <p class="card-text">Esplora tutti gli itinerari che includono una tappa particolare.</p>
-                        <a href="./user_pages/search_by_stages.php" class="btn btn-primary">Vai</a>
+                        <h5 class="card-title">Ricerca Itinerari</h5>
+                        <p class="card-text">Trova tutti gli itinerari relativi a una specifica località, tappa o tag.</p>
+                        <a href="./user_pages/search.php" class="btn btn-primary">Vai</a>
                     </div>
                 </div>
             </div>

@@ -1,31 +1,31 @@
 <?php
 include('../db/db.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $user_type = $_POST['user_type']; // "base" o "ente"
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $user_type = $_POST['user_type'];
 
     try {
-        $stmt = $conn->prepare("INSERT INTO gsv_users (username, name, surname, email, password, user_type, created_at) 
-                                VALUES (:username, :name, :surname, :email, :password, :user_type, NOW())");
-
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':surname', $surname);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':user_type', $user_type);
-
-        $stmt->execute();
-
-        header("Location: login.php?success=1");
-        exit();
+        $stmt = $conn->prepare("
+            INSERT INTO gsv_users (username, name, surname, email, password, user_type) 
+            VALUES (:username, :name, :surname, :email, :password, :user_type)
+        ");
+        $stmt->execute([
+            ':username' => $username,
+            ':name' => $name,
+            ':surname' => $surname,
+            ':email' => $email,
+            ':password' => $password,
+            ':user_type' => $user_type
+        ]);
+        header('Location: login.php?success=1');
+        exit;
     } catch (PDOException $e) {
-        $error = "Errore nella registrazione: " . $e->getMessage();
+        $error_message = "Errore durante la registrazione: " . $e->getMessage();
     }
 }
 ?>
