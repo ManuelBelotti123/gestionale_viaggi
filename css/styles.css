@@ -1,0 +1,43 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar {
+    background: #14213d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.hero {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    padding: 4rem 0;
+}
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+.hero p {
+    font-size: 1.2rem;
+}
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+footer {
+    background: #343a40;
+    color: #fff;
+}
+footer a {
+    text-decoration: none;
+    color: #17a2b8;
+}
+footer a:hover {
+    color: #0d6efd;
+}
