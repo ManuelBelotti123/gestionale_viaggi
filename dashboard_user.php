@@ -66,16 +66,7 @@ try {
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4">
-        <div class="container text-center">
-            <p>&copy; 2024 Travel Manager. Tutti i diritti riservati.</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Termini</a></li>
-                <li class="list-inline-item"><a href="#">Contatti</a></li>
-            </ul>
-        </div>
-    </footer>
+    <?php include('./comp/footer.php'); ?>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -118,16 +118,7 @@ try {
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4">
-        <div class="container text-center">
-            <p>&copy; 2024 Travel Manager. Tutti i diritti riservati.</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#" class="text-light">Privacy</a></li>
-                <li class="list-inline-item"><a href="#" class="text-light">Termini</a></li>
-                <li class="list-inline-item"><a href="#" class="text-light">Contatti</a></li>
-            </ul>
-        </div>
-    </footer>
+    <?php include('./comp/footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
