@@ -1,4 +1,5 @@
 <?php
+include './dashboard_choose.php';
 include('./auth/auth_functions.php');
 include('./db/db.php');
 
@@ -12,6 +13,7 @@ try {
     $stmt->execute();
     $user = $stmt->fetch();
     $username = $user['name'];
+    // Verifica il tipo di utente
 } catch (PDOException $e) {
     $username = "Utente";
 }

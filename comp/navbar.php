@@ -2,8 +2,7 @@
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <i class="p-2 bi bi-globe-central-south-asia"></i>
-            <span class="fw-bold">Travel Manager</span>
+            <img src="/gestionale_viaggi/img/logo.png" alt="Travel Manager" height="40" class="d-inline-block align-text-top me-2">
         </a>
         <!-- Toggle button for mobile view -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
