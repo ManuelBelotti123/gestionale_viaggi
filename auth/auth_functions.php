@@ -15,4 +15,13 @@ function logout() {
     header("Location: /auth/login.php");
     exit();
 }
+
+// Funzione per verificare se l'utente è un ente
+function redirect_if_not_entity() {
+    if ($_SESSION['user_type'] !== 'ente') {
+        header("Location: /gestionale_viaggi/auth/login.php");
+        exit();
+    }
+}
+
 ?>

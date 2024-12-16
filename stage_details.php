@@ -18,7 +18,7 @@ if (!$stage_id) {
 try {
     // Recupera i dettagli della tappa dal database
     $stmt = $conn->prepare("
-        SELECT S.stage_id, S.title AS stage_title, S.description AS stage_description, S.order, 
+        SELECT S.stage_id, S.title AS stage_title, S.description AS stage_description, S.stage_order, 
                I.title AS itinerary_title, I.itinerary_id, 
                L.name AS location_name
         FROM gsv_stages S
@@ -58,7 +58,7 @@ try {
         <h1 class="text-center"><?= htmlspecialchars($stage['stage_title']) ?></h1>
         <p class="text-center text-muted"><small>Parte dell'itinerario: <a href="itinerary_details.php?id=<?= $stage['itinerary_id'] ?>"><?= htmlspecialchars($stage['itinerary_title']) ?></a></small></p>
         
-        <div class="row mt-4">
+        <div class="row mt-4 mb-5">
             <div class="col-md-8 offset-md-2">
                 <!-- Dettagli della tappa -->
                 <div class="card shadow-sm">
@@ -67,7 +67,7 @@ try {
                         <p class="card-text"><?= nl2br(htmlspecialchars($stage['stage_description'])) ?></p>
                         
                         <h6 class="card-subtitle mt-4 text-muted">Ordine nella sequenza:</h6>
-                        <p class="card-text"><?= htmlspecialchars($stage['order']) ?></p>
+                        <p class="card-text"><?= htmlspecialchars($stage['stage_order']) ?></p>
                         
                         <h6 class="card-subtitle mt-4 text-muted">Località:</h6>
                         <p class="card-text"><?= htmlspecialchars($stage['location_name']) ?></p>
@@ -75,6 +75,12 @@ try {
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Pulsante per tornare indietro -->
+    <div class="mt-2 mb-3 text-center">
+        <!-- Utilizza JavaScript per tornare indietro alla pagina precedente, evita il conferma invio modulo -->
+        <a href="./user_pages/explore.php" class="btn btn-secondary">Torna ad Esplora</a>
     </div>
 
     <!-- Footer -->

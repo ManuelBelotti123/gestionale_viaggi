@@ -66,56 +66,22 @@ try {
     <div class="container mt-5">
         <h1 class="text-center mb-4">Esplora Itinerari</h1>
 
-        <!-- Sezione Itinerari Popolari -->
-        <section class="mb-5">
-            <h2 class="mb-3">Itinerari Popolari</h2>
-            <div class="row">
-                <?php foreach ($popular_itineraries as $itinerary): ?>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
-                                <p class="card-text"><?= htmlspecialchars($itinerary['description']) ?></p>
-                                <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
-                                <a href="../itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </section>
-
         <!-- Sezione Ultimi Itinerari Aggiunti -->
         <section class="mb-5">
             <h2 class="mb-3">Ultimi Itinerari Aggiunti</h2>
             <div class="row">
                 <?php foreach ($recent_itineraries as $itinerary): ?>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card mb-4 shadow-sm">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
-                                <p class="card-text"><?= htmlspecialchars($itinerary['description']) ?></p>
+                                <p class="card-text">
+                                <?= //solo i primi 100 caratteri della descrizione
+                                    htmlspecialchars(substr($itinerary['description'], 0, 100)) . "..."
+                                ?>
+                                </p>
                                 <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
-                                <a href="itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </section>
-
-        <!-- Sezione Itinerari Suggeriti -->
-        <section class="mb-5">
-            <h2 class="mb-3">Suggeriti per Te</h2>
-            <div class="row">
-                <?php foreach ($suggested_itineraries as $itinerary): ?>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
-                                <p class="card-text"><?= htmlspecialchars($itinerary['description']) ?></p>
-                                <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
-                                <a href="itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
+                                <a href="../itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
                             </div>
                         </div>
                     </div>

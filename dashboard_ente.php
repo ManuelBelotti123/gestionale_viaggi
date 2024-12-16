@@ -1,10 +1,11 @@
 <?php
-include './dashboard_choose.php';
+/* include './dashboard_choose.php'; */
 include('./auth/auth_functions.php');
 include('./db/db.php');
 
 // Verifica se l'utente è loggato
 redirect_if_not_logged_in();
+redirect_if_not_entity();
 
 // Query per recuperare il nome dell'utente loggato
 try {

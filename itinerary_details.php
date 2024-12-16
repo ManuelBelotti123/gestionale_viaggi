@@ -112,7 +112,7 @@ try {
         <!-- Pulsante per tornare indietro -->
         <div class="mt-2 mb-3 text-center">
             <!-- Utilizza JavaScript per tornare indietro alla pagina precedente, evita il conferma invio modulo -->
-            <a href="javascript:history.back()" class="btn btn-secondary">Torna Indietro</a>
+            <a href="./user_pages/explore.php" class="btn btn-secondary">Torna ad Esplora</a>
         </div>
 
     </div>
