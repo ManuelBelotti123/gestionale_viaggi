@@ -38,11 +38,11 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <?php include('../comp/navbar.php'); ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5 flex-grow-1">
         <h1 class="text-center">Statistiche Itinerari</h1>
         <p class="text-center">Visualizza l'andamento dei tuoi itinerari aggiunti ai preferiti dagli utenti.</p>
 

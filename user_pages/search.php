@@ -67,17 +67,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($search_query)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
+<body  class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <?php include('../comp/navbar.php'); ?>
 
-    <div class="container mt-5">
+    <!-- Contenuto della Pagina -->
+    <div class="container mt-5 flex-grow-1">
         <h1 class="text-center mb-4">Cerca Itinerari</h1>
         
         <!-- Form di Ricerca -->
         <form method="POST" class="mb-4">
             <div class="row g-3">
-                <div class="col-md-4">
+                <div class="col-md-7">
                     <input type="text" name="search_query" class="form-control" placeholder="Inserisci il termine di ricerca" value="<?= htmlspecialchars($search_query) ?>" required>
                 </div>
                 <div class="col-md-3">

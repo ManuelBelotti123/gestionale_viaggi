@@ -84,11 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_itinerary'])) 
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <?php include '../comp/navbar.php'; ?>
 
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5 flex-grow-1">
         <div class="step-header">
             <h2>Crea un Nuovo Itinerario</h2>
             <p>Completa il modulo per creare un nuovo itinerario. Una volta creato, potrai aggiungere tappe e dettagli.</p>
