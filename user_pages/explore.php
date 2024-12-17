@@ -44,6 +44,35 @@ try {
     ");
     $stmt_suggested->execute();
     $suggested_itineraries = $stmt_suggested->fetchAll(PDO::FETCH_ASSOC);
+
+    // Gli itinerari migliori di sempre
+    $stmt_best_all_time = $conn->prepare("
+        SELECT I.itinerary_id, I.title, I.description, L.name AS location_name, COUNT(F.favorite_id) AS favorites_count
+        FROM gsv_itineraries I
+        JOIN gsv_locations L ON I.location_id = L.location_id
+        JOIN gsv_favorites F ON I.itinerary_id = F.itinerary_id
+        WHERE I.is_active = 1
+        GROUP BY I.itinerary_id
+        ORDER BY favorites_count DESC
+        LIMIT 6
+    ");
+    $stmt_best_all_time->execute();
+    $best_all_time_itineraries = $stmt_best_all_time->fetchAll(PDO::FETCH_ASSOC);
+
+    // Gli itinerari più popolari di questa settimana
+    $stmt_popular_week = $conn->prepare("
+        SELECT I.itinerary_id, I.title, I.description, L.name AS location_name, COUNT(F.favorite_id) AS favorites_count
+        FROM gsv_itineraries I
+        JOIN gsv_locations L ON I.location_id = L.location_id
+        JOIN gsv_favorites F ON I.itinerary_id = F.itinerary_id
+        WHERE I.is_active = 1 AND F.saved_at >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
+        GROUP BY I.itinerary_id
+        ORDER BY favorites_count DESC
+        LIMIT 6
+    ");
+    $stmt_popular_week->execute();
+    $popular_week_itineraries = $stmt_popular_week->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
     $error_message = "Errore durante il recupero degli itinerari: " . $e->getMessage();
 }
@@ -70,22 +99,80 @@ try {
         <section class="mb-5">
             <h2 class="mb-3">Ultimi Itinerari Aggiunti</h2>
             <div class="row">
-                <?php foreach ($recent_itineraries as $itinerary): ?>
-                    <div class="col-md-6">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
-                                <p class="card-text">
-                                <?= //solo i primi 100 caratteri della descrizione
-                                    htmlspecialchars(substr($itinerary['description'], 0, 100)) . "..."
-                                ?>
-                                </p>
-                                <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
-                                <a href="../itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
+                <?php if (empty($recent_itineraries)): ?>
+                    <p class="text-center">Nessun risultato.</p>
+                <?php else: ?>
+                    <?php foreach ($recent_itineraries as $itinerary): ?>
+                        <div class="col-md-6">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
+                                    <p class="card-text">
+                                    <?= //solo i primi 100 caratteri della descrizione
+                                        htmlspecialchars(substr($itinerary['description'], 0, 100)) . "..."
+                                    ?>
+                                    </p>
+                                    <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
+                                    <a href="../itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </section>
+
+        <!-- Sezione Gli Itinerari Migliori di Sempre -->
+        <section class="mb-5">
+            <h2 class="mb-3">Gli Itinerari Migliori di Sempre</h2>
+            <div class="row">
+                <?php if (empty($best_all_time_itineraries)): ?>
+                    <p class="text-center">Nessun risultato.</p>
+                <?php else: ?>
+                    <?php foreach ($best_all_time_itineraries as $itinerary): ?>
+                        <div class="col-md-6">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
+                                    <p class="card-text">
+                                    <?= //solo i primi 100 caratteri della descrizione
+                                        htmlspecialchars(substr($itinerary['description'], 0, 100)) . "..."
+                                    ?>
+                                    </p>
+                                    <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
+                                    <a href="../itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </section>
+
+        <!-- Sezione Gli Itinerari Più Popolari di Questa Settimana -->
+        <section class="mb-5">
+            <h2 class="mb-3">Gli Itinerari Più Popolari di Questa Settimana</h2>
+            <div class="row">
+                <?php if (empty($popular_week_itineraries)): ?>
+                    <p class="text-center">Nessun risultato.</p>
+                <?php else: ?>
+                    <?php foreach ($popular_week_itineraries as $itinerary): ?>
+                        <div class="col-md-6">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($itinerary['title']) ?></h5>
+                                    <p class="card-text">
+                                    <?= //solo i primi 100 caratteri della descrizione
+                                        htmlspecialchars(substr($itinerary['description'], 0, 100)) . "..."
+                                    ?>
+                                    </p>
+                                    <p class="text-muted"><small>Località: <?= htmlspecialchars($itinerary['location_name']) ?></small></p>
+                                    <a href="../itinerary_details.php?id=<?= $itinerary['itinerary_id'] ?>" class="btn btn-primary">Scopri di più</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </section>
     </div>
