@@ -46,15 +46,6 @@ try {
         <h1 class="text-center">Statistiche Itinerari</h1>
         <p class="text-center">Visualizza l'andamento dei tuoi itinerari aggiunti ai preferiti dagli utenti.</p>
 
-        <!-- Filtro temporale -->
-        <form method="GET" class="mb-4">
-            <label for="start_date" class="form-label">Filtra per data:</label>
-            <div class="input-group">
-                <input type="date" id="start_date" name="start_date" class="form-control" value="<?php echo $start_date; ?>">
-                <button type="submit" class="btn btn-primary">Applica Filtro</button>
-            </div>
-        </form>
-
         <!-- Grafico -->
         <canvas class="mb-5" id="favoritesChart" width="400" height="200"></canvas>
     </div>

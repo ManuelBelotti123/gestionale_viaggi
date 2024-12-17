@@ -47,6 +47,43 @@ try {
     $stmt_stages->execute();
 
     $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
+
+    // Controlla se l'utente ha messo like all'itinerario
+    $stmt_like = $conn->prepare("
+        SELECT COUNT(*) as is_favorite
+        FROM gsv_favorites
+        WHERE itinerary_id = :itinerary_id AND user_id = :user_id
+    ");
+    $stmt_like->execute([
+        ':itinerary_id' => $itinerary_id,
+        ':user_id' => $_SESSION['user_id']
+    ]);
+    $is_favorite = $stmt_like->fetch(PDO::FETCH_ASSOC)['is_favorite'] > 0;
+
+    // Gestisci l'azione di mettere/togliere like
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($is_favorite) {
+            $stmt_remove_favorite = $conn->prepare("
+                DELETE FROM gsv_favorites
+                WHERE itinerary_id = :itinerary_id AND user_id = :user_id
+            ");
+            $stmt_remove_favorite->execute([
+                ':itinerary_id' => $itinerary_id,
+                ':user_id' => $_SESSION['user_id']
+            ]);
+        } else {
+            $stmt_add_favorite = $conn->prepare("
+                INSERT INTO gsv_favorites (itinerary_id, user_id, saved_at)
+                VALUES (:itinerary_id, :user_id, NOW())
+            ");
+            $stmt_add_favorite->execute([
+                ':itinerary_id' => $itinerary_id,
+                ':user_id' => $_SESSION['user_id']
+            ]);
+        }
+        header("Location: itinerary_details.php?id=$itinerary_id");
+        exit;
+    }
 } catch (PDOException $e) {
     echo "Errore durante il recupero dei dati: " . $e->getMessage();
     exit;
@@ -107,6 +144,15 @@ try {
             <?php else: ?>
                 <p class="text-center text-muted">Nessuna tappa disponibile per questo itinerario.</p>
             <?php endif; ?>
+        </div>
+
+        <!-- Pulsante per mettere/togliere like -->
+        <div class="text-center mt-3">
+            <form method="POST">
+                <button type="submit" class="btn btn-<?php echo $is_favorite ? 'danger' : 'primary'; ?>">
+                    <?php echo $is_favorite ? 'Rimuovi dai Preferiti' : 'Aggiungi ai Preferiti'; ?>
+                </button>
+            </form>
         </div>
 
         <!-- Pulsante per tornare indietro -->
