@@ -82,6 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_itinerary'])) 
             text-align: center;
             margin-bottom: 20px;
         }
+        .btn {
+            margin: 5px 0px;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -143,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_itinerary'])) 
                 </div>
             </form>
 
-            <!-- select di tutti i propri itinerari, con possibilità di modifica -->
+            <!-- select di tutti i propri itinerari, con possibilità di modifica e delete -->
             <div class="step-container mt-5">
                 <h3>Itinerari Esistenti</h3>
 
@@ -160,6 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_itinerary'])) 
                             echo "<p>{$itinerary['description']}</p>";
                             //bottone per modificare l'itinerario
                             echo "<a href='edit_itinerary.php?itinerary_id={$itinerary['itinerary_id']}' class='btn btn-primary'>Modifica</a>";
+                            //inserire il codice per eliminare l'itinerario
+                            echo "<a href='delete_itinerary.php?itinerary_id={$itinerary['itinerary_id']}' class='btn btn-danger'>Elimina</a>";
                             echo "</div>";
                         }
                     } else {

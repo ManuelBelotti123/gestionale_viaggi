@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_itinerary'])) {
             ':itinerary_id' => $itinerary_id,
         ]);
 
-        header("Location: ../dashboard_ente.php");
+        header("Location: create_itinerary.php");
         exit;
     } catch (PDOException $e) {
         $error = "Errore durante la modifica dell'itinerario: " . $e->getMessage();
