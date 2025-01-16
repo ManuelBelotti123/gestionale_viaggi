@@ -142,6 +142,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_itinerary'])) 
                     <button type="submit" name="create_itinerary" class="btn btn-primary">Crea Itinerario</button>
                 </div>
             </form>
+
+            <!-- select di tutti i propri itinerari, con possibilità di modifica -->
+            <div class="step-container mt-5">
+                <h3>Itinerari Esistenti</h3>
+
+                <?php
+                try {
+                    $stmt = $conn->prepare("SELECT * FROM gsv_itineraries WHERE entity_id = :entity_id");
+                    $stmt->execute([':entity_id' => $_SESSION['user_id']]);
+                    $itineraries = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    if ($itineraries) {
+                        foreach ($itineraries as $itinerary) {
+                            echo "<div class='card card-step p-3 mt-3'>";
+                            echo "<h5>{$itinerary['title']}</h5>";
+                            echo "<p>{$itinerary['description']}</p>";
+                            //bottone per modificare l'itinerario
+                            echo "<a href='edit_itinerary.php?itinerary_id={$itinerary['itinerary_id']}' class='btn btn-primary'>Modifica</a>";
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<p class='text-muted'>Non ci sono itinerari creati.</p>";
+                    }
+                } catch (PDOException $e) {
+                    echo "<p class='text-danger'>Errore nella query: " . $e->getMessage() . "</p>";
+                }
+                ?>
+            </div>
         </div>
     </div>
 
